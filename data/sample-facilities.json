@@ -1,0 +1,104 @@
+{
+  "facilities": [
+    {
+      "id": "food-court",
+      "category": "food",
+      "nameKey": "facility.foodCourt.name",
+      "locationKey": "facility.foodCourt.location",
+      "descriptionKey": "facility.foodCourt.description",
+      "accessKey": "facility.foodCourt.accessibility",
+      "keywordsKey": "facility.foodCourt.keywords",
+      "map": { "number": 1, "x": 76, "y": 34 }
+    },
+    {
+      "id": "tea-stall",
+      "category": "food",
+      "nameKey": "facility.teaStall.name",
+      "locationKey": "facility.teaStall.location",
+      "descriptionKey": "facility.teaStall.description",
+      "accessKey": "facility.teaStall.accessibility",
+      "keywordsKey": "facility.teaStall.keywords",
+      "map": { "number": 2, "x": 38, "y": 74 }
+    },
+    {
+      "id": "public-restrooms",
+      "category": "restrooms",
+      "nameKey": "facility.restrooms.name",
+      "locationKey": "facility.restrooms.location",
+      "descriptionKey": "facility.restrooms.description",
+      "accessKey": "facility.restrooms.accessibility",
+      "keywordsKey": "facility.restrooms.keywords",
+      "map": { "number": 3, "x": 23, "y": 51 }
+    },
+    {
+      "id": "waiting-room",
+      "category": "waiting",
+      "nameKey": "facility.waitingRoom.name",
+      "locationKey": "facility.waitingRoom.location",
+      "descriptionKey": "facility.waitingRoom.description",
+      "accessKey": "facility.waitingRoom.accessibility",
+      "keywordsKey": "facility.waitingRoom.keywords",
+      "map": { "number": 4, "x": 55, "y": 31 }
+    },
+    {
+      "id": "platform-seating",
+      "category": "waiting",
+      "nameKey": "facility.platformSeating.name",
+      "locationKey": "facility.platformSeating.location",
+      "descriptionKey": "facility.platformSeating.description",
+      "accessKey": "facility.platformSeating.accessibility",
+      "keywordsKey": "facility.platformSeating.keywords",
+      "map": { "number": 5, "x": 68, "y": 86 }
+    },
+    {
+      "id": "elevator",
+      "category": "accessibility",
+      "nameKey": "facility.elevator.name",
+      "locationKey": "facility.elevator.location",
+      "descriptionKey": "facility.elevator.description",
+      "accessKey": "facility.elevator.accessibility",
+      "keywordsKey": "facility.elevator.keywords",
+      "map": { "number": 6, "x": 56, "y": 54 }
+    },
+    {
+      "id": "help-desk",
+      "category": "assistance",
+      "nameKey": "facility.helpDesk.name",
+      "locationKey": "facility.helpDesk.location",
+      "descriptionKey": "facility.helpDesk.description",
+      "accessKey": "facility.helpDesk.accessibility",
+      "keywordsKey": "facility.helpDesk.keywords",
+      "map": { "number": 7, "x": 35, "y": 28 }
+    },
+    {
+      "id": "first-aid-room",
+      "category": "assistance",
+      "nameKey": "facility.firstAid.name",
+      "locationKey": "facility.firstAid.location",
+      "descriptionKey": "facility.firstAid.description",
+      "accessKey": "facility.firstAid.accessibility",
+      "keywordsKey": "facility.firstAid.keywords",
+      "map": { "number": 8, "x": 38, "y": 44 }
+    },
+    {
+      "id": "ticket-office",
+      "category": "tickets",
+      "nameKey": "facility.ticketOffice.name",
+      "locationKey": "facility.ticketOffice.location",
+      "descriptionKey": "facility.ticketOffice.description",
+      "accessKey": "facility.ticketOffice.accessibility",
+      "keywordsKey": "facility.ticketOffice.keywords",
+      "map": { "number": 9, "x": 17, "y": 27 }
+    },
+    {
+      "id": "water-point",
+      "category": "water",
+      "nameKey": "facility.waterPoint.name",
+      "locationKey": "facility.waterPoint.location",
+      "descriptionKey": "facility.waterPoint.description",
+      "accessKey": "facility.waterPoint.accessibility",
+      "keywordsKey": "facility.waterPoint.keywords",
+      "map": { "number": 10, "x": 76, "y": 75 }
+    }
+  ]
+}

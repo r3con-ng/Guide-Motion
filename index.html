@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f5f7" />
+    <meta name="description" content="Guide Motion rebuild preview" />
+    <title>Guide Motion</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("guide-motion-theme");
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        document.documentElement.dataset.theme =
+          savedTheme || (systemPrefersDark ? "dark" : "light");
+      } catch (_) {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+    <link rel="stylesheet" href="css/app.css" />
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <a
+      class="skip-link"
+      href="#main-content"
+      data-i18n="accessibility.skipToContent"
+      >Skip to main content</a
+    >
+
+    <div class="app-shell">
+      <button
+        class="drawer-scrim"
+        type="button"
+        data-drawer-close
+        aria-label="Close navigation"
+        hidden
+      ></button>
+
+      <aside class="sidebar" id="app-sidebar" aria-label="Main navigation">
+        <a class="brand" href="#overview" aria-label="Guide Motion home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path
+                d="M8 29h24M11 25V12a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v13M11 19h18M15 14h4m6 0h-2M14 29l-3 4m15-4 3 4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle cx="15" cy="24" r="1.5" fill="currentColor" />
+              <circle cx="25" cy="24" r="1.5" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="brand-copy"
+            ><strong data-i18n="brand.name">Guide Motion</strong
+            ><small data-i18n="brand.caption"
+              >Railway journey companion</small
+            ></span
+          >
+        </a>
+
+        <div class="sidebar-profile">
+          <span class="profile-monogram" aria-hidden="true">GM</span>
+          <span
+            ><strong data-i18n="profile.preview">Local preview</strong
+            ><small data-i18n="profile.status">Rebuild workspace</small></span
+          >
+        </div>
+
+        <nav class="primary-nav" aria-label="Guide Motion sections">
+          <a
+            class="nav-link"
+            href="#overview"
+            data-route="overview"
+            aria-current="page"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="8" height="8" rx="1.5" />
+              <rect x="13" y="3" width="8" height="5" rx="1.5" />
+              <rect x="13" y="10" width="8" height="11" rx="1.5" />
+              <rect x="3" y="13" width="8" height="8" rx="1.5" /></svg
+            ><span data-i18n="nav.overview">Overview</span>
+          </a>
+          <a class="nav-link" href="#station-guide" data-route="station-guide">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path
+                d="M4 20V5.5L12 3l8 2.5V20M4 20h16M8 8h2m4 0h2M8 12h2m4 0h2M10 20v-4h4v4"
+              /></svg
+            ><span data-i18n="nav.stationGuide">Station guide</span>
+          </a>
+          <a class="nav-link" href="#services" data-route="services">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path
+                d="M4 8h16l-1 12H5L4 8Zm4 0 2-5m6 5-2-5M8 12v4m8-4v4M3 8h18"
+              /></svg
+            ><span data-i18n="nav.services">Passenger services</span>
+          </a>
+          <a class="nav-link" href="#bookings" data-route="bookings">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <rect x="4" y="3" width="16" height="18" rx="2" />
+              <path d="M8 7h8M8 11h8M8 15h5m-7 6 2-3m10 3-2-3" /></svg
+            ><span data-i18n="nav.bookings">My bookings</span>
+          </a>
+          <a class="nav-link" href="#join-team" data-route="join-team">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="9" cy="8" r="3" />
+              <path
+                d="M3 20v-2a6 6 0 0 1 12 0v2m2-9a3 3 0 1 0 0-6m1 9a5 5 0 0 1 3 5"
+              /></svg
+            ><span data-i18n="nav.joinTeam">Join the team</span>
+          </a>
+          <a class="nav-link" href="#applications" data-route="applications">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path
+                d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm8 1v4h4M8 12h8m-8 4h8"
+              /></svg
+            ><span data-i18n="nav.applications">Applications</span>
+          </a>
+          <a class="nav-link" href="#management" data-route="management">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="9" cy="8" r="3" />
+              <path
+                d="M3 20v-2a6 6 0 0 1 12 0v2m3-12h4m-2-2v4m-3 8h4m-2-2v4"
+              /></svg
+            ><span data-i18n="nav.management">Management</span>
+          </a>
+          <a class="nav-link" href="#about-contact" data-route="about-contact">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path
+                d="M9.6 9a2.5 2.5 0 1 1 4.4 1.6c-1 1-2 1.2-2 2.9M12 17h.01"
+              /></svg
+            ><span data-i18n="nav.aboutContact">About & contact</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span class="rail-divider" aria-hidden="true"></span>
+          <span class="heritage-label" data-i18n="footer.previewLabel"
+            >A new journey begins</span
+          >
+          <small data-i18n="footer.stepLabel">Rebuild · Step 7</small>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <button
+            class="icon-button menu-button"
+            type="button"
+            data-drawer-open
+            aria-controls="app-sidebar"
+            aria-expanded="false"
+            aria-label="Open navigation"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <div class="breadcrumb">
+            <span data-i18n="brand.name">Guide Motion</span
+            ><span aria-hidden="true">/</span
+            ><strong data-current-title data-i18n="nav.overview"
+              >Overview</strong
+            >
+          </div>
+          <div class="topbar-controls">
+            <label class="language-control">
+              <span class="sr-only" data-i18n="controls.language"
+                >Language</span
+              >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <path
+                  d="M3 12h18M12 3a14 14 0 0 1 0 18m0-18a14 14 0 0 0 0 18"
+                />
+              </svg>
+              <select id="language-select" aria-label="Language" data-i18n-aria-label="controls.language">
+                <option value="en" lang="en">English</option>
+                <option value="hi" lang="hi">हिन्दी</option>
+              </select>
+            </label>
+            <button
+              class="theme-button"
+              type="button"
+              data-theme-toggle
+              aria-pressed="false"
+              aria-label="Switch to dark theme"
+            >
+              <svg class="theme-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+                />
+              </svg>
+              <span data-theme-label data-i18n="controls.darkTheme"
+                >Dark theme</span
+              >
+            </button>
+          </div>
+        </header>
+
+        <main id="main-content" class="main-content" tabindex="-1">
+          <div class="preview-banner" role="status">
+            <span class="banner-mark" aria-hidden="true">✦</span>
+            <p>
+              <strong data-i18n="preview.label">Rebuild preview</strong
+              ><span data-i18n="preview.message"
+                >Working prototype: responsive navigation, theme control,
+                Hindi and English interface, passenger and staff requests, and sample station guide.</span
+              >
+            </p>
+          </div>
+
+          <section
+            class="page-view"
+            id="overview"
+            data-page-view
+            data-title-key="nav.overview"
+            aria-labelledby="overview-title"
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="overview.eyebrow">
+                  A clearer way through the journey
+                </p>
+                <h1 id="overview-title" data-i18n="overview.title">
+                  Welcome to Guide Motion
+                </h1>
+                <p class="page-intro" data-i18n="overview.intro">
+                  Explore railway station information, passenger services, and
+                  the support available to your team.
+                </p>
+              </div>
+              <span class="ticket-stamp" aria-hidden="true"
+                ><span data-i18n="overview.stampTop">GUIDE</span
+                ><strong data-i18n="overview.stampBottom">MOTION</strong></span
+              >
+            </div>
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow" data-i18n="overview.sectionsEyebrow">
+                  Your journey starts here
+                </p>
+                <h2 data-i18n="overview.sectionsTitle">Explore Guide Motion</h2>
+              </div>
+              <span class="section-rule" aria-hidden="true"></span>
+            </div>
+            <div class="feature-grid">
+              <a class="feature-card" href="#station-guide"
+                ><span class="feature-icon icon-blue" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 20V5.5L12 3l8 2.5V20M4 20h16M8 8h2m4 0h2M8 12h2m4 0h2M10 20v-4h4v4"
+                    /></svg></span
+                ><span class="feature-card-copy"
+                  ><span class="feature-kicker" data-i18n="cards.discoverKicker"
+                    >FIND YOUR WAY</span
+                  ><strong data-i18n="cards.discoverTitle">Station guide</strong
+                  ><span data-i18n="cards.discoverBody"
+                    >Explore facilities and station information.</span
+                  ></span
+                ><span class="card-arrow" aria-hidden="true">↗</span></a
+              >
+              <a class="feature-card" href="#services"
+                ><span class="feature-icon icon-brass" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 8h16l-1 12H5L4 8Zm4 0 2-5m6 5-2-5M8 12v4m8-4v4M3 8h18"
+                    /></svg></span
+                ><span class="feature-card-copy"
+                  ><span class="feature-kicker" data-i18n="cards.servicesKicker"
+                    >PASSENGER SUPPORT</span
+                  ><strong data-i18n="cards.servicesTitle"
+                    >Passenger services</strong
+                  ><span data-i18n="cards.servicesBody"
+                    >Food, medical support, and porter services.</span
+                  ></span
+                ><span class="card-arrow" aria-hidden="true">↗</span></a
+              >
+              <a class="feature-card" href="#join-team"
+                ><span class="feature-icon icon-maroon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24">
+                    <circle cx="9" cy="8" r="3" />
+                    <path
+                      d="M3 20v-2a6 6 0 0 1 12 0v2m2-9a3 3 0 1 0 0-6m1 9a5 5 0 0 1 3 5"
+                    /></svg></span
+                ><span class="feature-card-copy"
+                  ><span class="feature-kicker" data-i18n="cards.teamKicker"
+                    >WORK WITH US</span
+                  ><strong data-i18n="cards.teamTitle">Join the team</strong
+                  ><span data-i18n="cards.teamBody"
+                    >See the roles and application journey.</span
+                  ></span
+                ><span class="card-arrow" aria-hidden="true">↗</span></a
+              >
+            </div>
+            <section
+              class="heritage-note"
+              aria-labelledby="heritage-note-title"
+            >
+              <span class="note-emblem" aria-hidden="true">GM</span>
+              <div>
+                <p class="eyebrow" data-i18n="heritage.eyebrow">
+                  Made for the whole journey
+                </p>
+                <h2 id="heritage-note-title" data-i18n="heritage.title">
+                  A familiar guide, built for every traveller
+                </h2>
+                <p data-i18n="heritage.body">
+                  Guide Motion brings station information and passenger support
+                  into one place. Regional languages and accessibility are part
+                  of the rebuild from the start.
+                </p>
+              </div>
+            </section>
+          </section>
+
+          <section
+            class="page-view"
+            id="station-guide"
+            data-page-view
+            data-title-key="nav.stationGuide"
+            aria-labelledby="station-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="station.eyebrow">
+                  STATION INFORMATION
+                </p>
+                <h1 id="station-title" data-i18n="station.title">
+                  Station guide
+                </h1>
+                <p class="page-intro" data-i18n="station.body">
+                  Search a sample directory of station facilities by name,
+                  location, or category.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note">
+              <strong data-i18n="station.dataTitle">Illustrative station data</strong>
+              <span data-i18n="station.dataBody">This sample directory and schematic are fictional, not tied to a real station. They do not provide verified directions or live status.</span>
+            </div>
+            <section class="station-schematic" aria-labelledby="station-schematic-title">
+              <div class="facility-directory-heading"><div><p class="eyebrow" data-i18n="station.mapEyebrow">SAMPLE ORIENTATION</p><h2 id="station-schematic-title" data-i18n="station.mapTitle">Station layout sketch</h2><p class="schematic-intro" data-i18n="station.mapBody">Select a numbered marker or facility name to connect the sketch with its listing.</p></div><span class="sample-badge" data-i18n="station.sampleBadge">SAMPLE DATA</span></div>
+              <div class="schematic-canvas" id="facility-schematic">
+                <svg class="schematic-drawing" viewBox="0 0 800 500" role="img" aria-labelledby="schematic-svg-title schematic-svg-description" preserveAspectRatio="xMidYMid meet">
+                  <title id="schematic-svg-title" data-i18n="station.mapSvgTitle">Fictional station layout</title>
+                  <desc id="schematic-svg-description" data-i18n="station.mapSvgDescription">An illustrative concourse connected to two sample platforms. Numbered controls identify facilities and are listed below.</desc>
+                  <rect class="map-boundary" x="18" y="18" width="764" height="464" rx="14" />
+                  <rect class="map-concourse" x="90" y="72" width="620" height="210" rx="12" />
+                  <text class="map-zone-label" x="112" y="105" data-i18n="station.mapConcourse">MAIN CONCOURSE</text>
+                  <path class="map-walkway" d="M400 282v44M400 326v11M400 390v18" />
+                  <rect class="map-connector" x="360" y="280" width="80" height="47" rx="8" />
+                  <text class="map-small-label" x="400" y="309" text-anchor="middle" data-i18n="station.mapPassage">PASSAGE</text>
+                  <rect class="map-platform" x="80" y="337" width="640" height="53" rx="8" />
+                  <rect class="map-platform" x="80" y="408" width="640" height="53" rx="8" />
+                  <text class="map-zone-label" x="100" y="369" data-i18n="station.mapPlatformOne">PLATFORM 1</text>
+                  <text class="map-zone-label" x="100" y="440" data-i18n="station.mapPlatformTwo">PLATFORM 2</text>
+                  <path class="map-rail-line" d="M260 360h430M260 378h430M260 431h430M260 449h430" />
+                  <path class="map-door" d="M376 282v-12m48 12v-12" />
+                  <text class="map-small-label" x="400" y="472" text-anchor="middle" data-i18n="station.mapEntrance">SAMPLE ENTRANCE</text>
+                  <path class="map-entrance-line" d="M400 460v-24" />
+                </svg>
+                <div class="schematic-markers" id="facility-map-markers" role="group" aria-label="Facility markers" data-i18n-aria-label="station.mapMarkers"></div>
+              </div>
+              <div class="map-legend-heading"><h3 data-i18n="station.mapLegend">Facility key</h3><p id="map-selection-status" role="status" aria-live="polite" data-i18n="station.mapHint">Choose a marker or item below.</p></div>
+              <div class="map-legend" id="facility-map-legend" role="list"></div>
+            </section>
+            <section class="facility-directory" aria-labelledby="facility-directory-title">
+              <div class="facility-directory-heading"><div><p class="eyebrow" data-i18n="station.sampleName">DEMO CENTRAL STATION</p><h2 id="facility-directory-title" data-i18n="station.directoryTitle">Facility directory</h2></div><span class="sample-badge" data-i18n="station.sampleBadge">SAMPLE DATA</span></div>
+              <div class="facility-toolbar">
+                <label class="field facility-search"><span data-i18n="station.searchLabel">Search facilities</span><input type="search" id="facility-search" autocomplete="off" data-i18n-placeholder="station.searchPlaceholder" placeholder="Try “toilet”, “food”, or “platform 2”" /></label>
+                <button type="button" class="clear-button" id="facility-clear" data-i18n="station.clear">Clear</button>
+              </div>
+              <div class="facility-categories" role="group" aria-label="Filter facilities by category" data-i18n-aria-label="station.categoryFilter">
+                <button type="button" class="category-button" data-facility-category="all" aria-pressed="true" data-i18n="station.category.all">All facilities</button>
+                <button type="button" class="category-button" data-facility-category="food" aria-pressed="false" data-i18n="station.category.food">Food</button>
+                <button type="button" class="category-button" data-facility-category="restrooms" aria-pressed="false" data-i18n="station.category.restrooms">Restrooms</button>
+                <button type="button" class="category-button" data-facility-category="waiting" aria-pressed="false" data-i18n="station.category.waiting">Waiting</button>
+                <button type="button" class="category-button" data-facility-category="accessibility" aria-pressed="false" data-i18n="station.category.accessibility">Accessibility</button>
+                <button type="button" class="category-button" data-facility-category="assistance" aria-pressed="false" data-i18n="station.category.assistance">Assistance</button>
+                <button type="button" class="category-button" data-facility-category="tickets" aria-pressed="false" data-i18n="station.category.tickets">Tickets</button>
+                <button type="button" class="category-button" data-facility-category="water" aria-pressed="false" data-i18n="station.category.water">Water</button>
+              </div>
+              <p class="facility-result-count" id="facility-result-count" role="status" aria-live="polite" data-i18n="station.loading">Loading sample facilities…</p>
+              <div class="facility-grid" id="facility-grid" role="list" aria-live="polite"></div>
+            </section>
+          </section>
+
+          <section
+            class="page-view"
+            id="services"
+            data-page-view
+            data-title-key="nav.services"
+            aria-labelledby="services-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="services.eyebrow">
+                  PASSENGER SUPPORT
+                </p>
+                <h1 id="services-title" data-i18n="services.title">
+                  Passenger services
+                </h1>
+                <p class="page-intro" data-i18n="services.body">
+                  Submit a local prototype request for porter, meal, or medical
+                  assistance. Requests stay in this browser.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note">
+              <strong data-i18n="services.demoTitle">Prototype storage</strong>
+              <span data-i18n="services.demoBody">Use sample details only. Requests stay in this browser on this device, are not sent to railway staff, and do not sync elsewhere. Do not enter real personal or medical information.</span>
+            </div>
+            <form class="request-form" id="service-request-form">
+              <div class="form-heading">
+                <div>
+                  <p class="eyebrow" data-i18n="form.eyebrow">NEW REQUEST</p>
+                  <h2 data-i18n="form.title">Request a service</h2>
+                </div>
+                <span class="required-note" data-i18n="form.required">* Required</span>
+              </div>
+              <div class="form-grid">
+                <label class="field field-wide"><span data-i18n="form.service">Service type *</span>
+                  <select name="service" id="request-service" required>
+                    <option value="porter" data-i18n="form.porter">Coolie / porter assistance</option>
+                    <option value="meal" data-i18n="form.meal">Meals on the journey</option>
+                    <option value="medical" data-i18n="form.medical">Medical support request</option>
+                  </select>
+                </label>
+                <label class="field"><span data-i18n="form.name">Full name *</span><input name="name" autocomplete="name" maxlength="90" required /></label>
+                <label class="field"><span data-i18n="form.email">Email address *</span><input name="email" type="email" autocomplete="email" maxlength="120" required /></label>
+                <label class="field"><span data-i18n="form.phone">Phone number *</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() .-]{7,20}" maxlength="20" required /></label>
+                <label class="field"><span data-i18n="form.station">Station *</span><input name="station" maxlength="100" required /></label>
+                <label class="field"><span data-i18n="form.train">Train name or number *</span><input name="train" maxlength="80" required /></label>
+                <label class="field"><span data-i18n="form.travelDate">Travel date *</span><input name="travelDate" type="date" required /></label>
+                <label class="field"><span data-i18n="form.coachSeat">Coach and seat / berth</span><input name="coachSeat" maxlength="30" /></label>
+                <div class="conditional-fields" data-service-fields="porter">
+                  <label class="field"><span data-i18n="form.bags">Number of bags *</span><input name="bags" type="number" min="1" max="30" value="1" required /></label>
+                  <label class="field"><span data-i18n="form.pickup">Pickup point *</span><input name="pickup" maxlength="100" required /></label>
+                  <label class="field"><span data-i18n="form.dropoff">Drop-off point *</span><input name="dropoff" maxlength="100" required /></label>
+                </div>
+                <div class="conditional-fields" data-service-fields="meal" hidden>
+                  <label class="field"><span data-i18n="form.mealChoice">Meal preference *</span>
+                    <select name="mealChoice" required><option value="" data-i18n="form.choose">Choose one</option><option value="vegetarian" data-i18n="form.vegetarian">Vegetarian</option><option value="non-vegetarian" data-i18n="form.nonVegetarian">Non-vegetarian</option><option value="other" data-i18n="form.otherMeal">Other / specify below</option></select>
+                  </label>
+                  <label class="field"><span data-i18n="form.people">Number of people *</span><input name="people" type="number" min="1" max="20" value="1" required /></label>
+                </div>
+                <div class="conditional-fields" data-service-fields="medical" hidden>
+                  <label class="field field-wide"><span data-i18n="form.facility">Support requested *</span>
+                    <select name="facility" required><option value="" data-i18n="form.choose">Choose one</option><option value="first-aid" data-i18n="form.firstAid">First aid</option><option value="wheelchair" data-i18n="form.wheelchair">Wheelchair assistance</option><option value="medical-room" data-i18n="form.medicalRoom">Medical room / staff</option><option value="other" data-i18n="form.otherSupport">Other support</option></select>
+                  </label>
+                </div>
+                <label class="field field-wide"><span data-i18n="form.instructions">Additional instructions</span><textarea name="instructions" rows="3" maxlength="500" data-i18n-placeholder="form.instructionsPlaceholder" placeholder="Avoid including sensitive medical details."></textarea></label>
+              </div>
+              <div class="form-actions"><button class="primary-button" type="submit" data-i18n="form.submit">Save prototype request</button><span class="form-feedback" id="request-feedback" role="status" aria-live="polite"></span></div>
+            </form>
+          </section>
+
+          <section
+            class="page-view"
+            id="bookings"
+            data-page-view
+            data-title-key="nav.bookings"
+            aria-labelledby="bookings-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="bookings.eyebrow">
+                  PASSENGER ACCOUNT
+                </p>
+                <h1 id="bookings-title" data-i18n="bookings.title">
+                  My bookings
+                </h1>
+                <p class="page-intro" data-i18n="bookings.body">
+                  Requests saved in this browser appear below with their local prototype reference.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note"><strong data-i18n="bookings.storageTitle">Saved on this device only</strong><span data-i18n="bookings.storageBody">These are local prototype records. They are not sent to a railway provider and will not sync to another browser or device.</span></div>
+            <div class="booking-list" id="booking-list" aria-live="polite"></div>
+          </section>
+
+          <section
+            class="page-view"
+            id="join-team"
+            data-page-view
+            data-title-key="nav.joinTeam"
+            aria-labelledby="join-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="join.eyebrow">
+                  CAREER OPPORTUNITIES
+                </p>
+                <h1 id="join-title" data-i18n="join.title">Join the team</h1>
+                <p class="page-intro" data-i18n="join.body">
+                  Choose a role and send a prototype application. This browser
+                  keeps the record locally.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note">
+              <strong data-i18n="application.demoTitle">Local prototype only</strong>
+              <span data-i18n="application.demoBody">Use sample details. Applications are saved in this browser, are not sent to an employer, and are visible to anyone using this browser. Do not enter real personal information.</span>
+            </div>
+            <form class="request-form" id="staff-application-form">
+              <div class="form-heading"><div><p class="eyebrow" data-i18n="application.eyebrow">ROLE APPLICATION</p><h2 data-i18n="application.title">Apply to join the team</h2></div><span class="required-note" data-i18n="form.required">* Required</span></div>
+              <div class="form-grid">
+                <label class="field field-wide"><span data-i18n="application.role">Role *</span>
+                  <select name="role" id="application-role" required>
+                    <option value="manager" data-i18n="roles.manager">Manager</option>
+                    <option value="porter" data-i18n="roles.porter">Coolie / porter</option>
+                    <option value="medical" data-i18n="roles.medical">Medical staff</option>
+                    <option value="catering" data-i18n="roles.catering">Catering / delivery</option>
+                  </select>
+                </label>
+                <label class="field"><span data-i18n="application.name">Full name *</span><input name="name" autocomplete="name" maxlength="90" required /></label>
+                <label class="field"><span data-i18n="application.age">Age</span><input name="age" type="number" min="1" max="120" inputmode="numeric" /></label>
+                <label class="field"><span data-i18n="application.gender">Gender (optional)</span><input name="gender" maxlength="40" /></label>
+                <label class="field"><span data-i18n="application.email">Email address *</span><input name="email" type="email" autocomplete="email" maxlength="120" required /></label>
+                <label class="field"><span data-i18n="application.phone">Phone number *</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() .-]{7,20}" maxlength="20" required /></label>
+                <div class="conditional-fields" data-role-fields="manager,medical" hidden>
+                  <label class="field"><span data-i18n="application.qualification">Qualification *</span><input name="qualification" maxlength="120" required /></label>
+                  <label class="field"><span data-i18n="application.salary">Expected salary *</span><input name="salary" maxlength="40" required /></label>
+                  <label class="field field-wide"><span data-i18n="application.motivation">Why would you like to join? *</span><textarea name="motivation" rows="4" maxlength="700" required></textarea></label>
+                </div>
+                <div class="conditional-fields" data-role-fields="porter,catering" hidden>
+                  <label class="field field-wide"><span data-i18n="application.hours">How many hours can you work in a day?</span><input name="hours" type="number" min="1" max="24" inputmode="numeric" /></label>
+                </div>
+              </div>
+              <p class="resume-note" data-i18n="application.resumeNote">This free prototype does not collect resumes.</p>
+              <div class="form-actions"><button class="primary-button" type="submit" data-i18n="application.submit">Save prototype application</button><span class="form-feedback" id="application-feedback" role="status" aria-live="polite"></span></div>
+            </form>
+          </section>
+
+          <section
+            class="page-view"
+            id="applications"
+            data-page-view
+            data-title-key="nav.applications"
+            aria-labelledby="applications-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="applications.eyebrow">
+                  STAFF WORKSPACE
+                </p>
+                <h1 id="applications-title" data-i18n="applications.title">
+                  Applications
+                </h1>
+                <p class="page-intro" data-i18n="applications.body">
+                  Applications saved in this browser are listed below. This is not a private or shared staff system.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note"><strong data-i18n="applications.localTitle">Local application history</strong><span data-i18n="applications.localBody">Anyone with access to this browser can view and remove these sample records. No employer can see them.</span></div>
+            <div class="booking-list" id="application-list" aria-live="polite"></div>
+          </section>
+
+          <section
+            class="page-view"
+            id="management"
+            data-page-view
+            data-title-key="nav.management"
+            aria-labelledby="management-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="management.eyebrow">
+                  MANAGER & ADMIN
+                </p>
+                <h1 id="management-title" data-i18n="management.title">
+                  Management workspace
+                </h1>
+                <p class="page-intro" data-i18n="management.body">
+                  Review booking and staff application records stored locally in
+                  this browser.
+                </p>
+              </div>
+            </div>
+            <div class="demo-notice" role="note"><strong data-i18n="management.localTitle">Local demo · Not access-controlled</strong><span data-i18n="management.localBody">Anyone using this browser can review these records. They are not shared, private, or protected by an account. The lists are read-only.</span></div>
+            <div class="management-tabs" role="tablist" aria-label="Management lists" data-i18n-aria-label="management.tabsLabel">
+              <button class="management-tab" type="button" id="tab-bookings" role="tab" aria-selected="true" aria-controls="panel-bookings" data-management-tab="bookings" data-i18n="management.bookings">Bookings</button>
+              <button class="management-tab" type="button" id="tab-applications" role="tab" aria-selected="false" aria-controls="panel-applications" tabindex="-1" data-management-tab="applications" data-i18n="management.recruitment">Applications</button>
+              <button class="management-tab" type="button" id="tab-employees" role="tab" aria-selected="false" aria-controls="panel-employees" tabindex="-1" data-management-tab="employees" data-i18n="management.employees">Employees</button>
+            </div>
+            <section class="management-panel" id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings" data-management-panel="bookings">
+              <div class="management-panel-heading"><div><h2 data-i18n="management.bookingsTitle">Passenger requests</h2><p data-i18n="management.bookingsBody">Read-only records created in this browser.</p></div></div>
+              <div class="management-toolbar"><label class="field"><span data-i18n="management.searchBookings">Search passenger requests</span><input type="search" data-management-search="bookings" autocomplete="off" data-i18n-placeholder="management.searchPlaceholder" placeholder="Search by name, service, station, or reference" /></label><span class="table-count" data-management-count="bookings" role="status" aria-live="polite"></span></div>
+              <div class="management-table-wrap" tabindex="0" role="region" aria-label="Passenger request records" data-i18n-aria-label="management.bookingsTableLabel"><table class="management-table"><thead><tr><th data-i18n="management.reference">Reference</th><th data-i18n="management.service">Service</th><th data-i18n="management.passenger">Passenger</th><th data-i18n="management.journey">Journey</th><th data-i18n="management.submitted">Saved</th><th><span class="sr-only" data-i18n="management.actions">Actions</span></th></tr></thead><tbody id="management-bookings-body"></tbody></table></div>
+              <p class="table-scroll-hint" data-i18n="management.tableScrollHint">Scroll the table horizontally to see all columns.</p>
+              <p class="table-empty" data-management-empty="bookings" hidden data-i18n="management.noBookings">There are no local passenger requests yet.</p>
+            </section>
+            <section class="management-panel" id="panel-applications" role="tabpanel" aria-labelledby="tab-applications" data-management-panel="applications" hidden>
+              <div class="management-panel-heading"><div><h2 data-i18n="management.applicationsTitle">Staff applications</h2><p data-i18n="management.applicationsBody">Read-only sample submissions saved in this browser.</p></div></div>
+              <div class="management-toolbar"><label class="field"><span data-i18n="management.searchApplications">Search staff applications</span><input type="search" data-management-search="applications" autocomplete="off" data-i18n-placeholder="management.searchPlaceholder" placeholder="Search by name, role, email, or reference" /></label><span class="table-count" data-management-count="applications" role="status" aria-live="polite"></span></div>
+              <div class="management-table-wrap" tabindex="0" role="region" aria-label="Staff application records" data-i18n-aria-label="management.applicationsTableLabel"><table class="management-table"><thead><tr><th data-i18n="management.reference">Reference</th><th data-i18n="management.role">Role</th><th data-i18n="management.applicant">Applicant</th><th data-i18n="management.contact">Contact</th><th data-i18n="management.submitted">Saved</th><th><span class="sr-only" data-i18n="management.actions">Actions</span></th></tr></thead><tbody id="management-applications-body"></tbody></table></div>
+              <p class="table-scroll-hint" data-i18n="management.tableScrollHint">Scroll the table horizontally to see all columns.</p>
+              <p class="table-empty" data-management-empty="applications" hidden data-i18n="management.noApplications">There are no local staff applications yet.</p>
+            </section>
+            <section class="management-panel" id="panel-employees" role="tabpanel" aria-labelledby="tab-employees" data-management-panel="employees" hidden>
+              <div class="management-panel-heading"><div><h2 data-i18n="management.employeesTitle">Employee directory</h2><p data-i18n="management.employeesBody">An application is not an employee record. This prototype has no employee records or onboarding workflow.</p></div></div>
+              <p class="table-empty employee-empty" data-i18n="management.noEmployees">No employee records are available in this local demo.</p>
+            </section>
+          </section>
+
+          <dialog class="detail-dialog" id="management-detail-dialog" aria-labelledby="management-detail-title">
+            <div class="detail-dialog-heading"><div><p class="eyebrow" data-i18n="management.detailEyebrow">RECORD DETAILS</p><h2 id="management-detail-title" data-detail-title data-i18n="management.detailTitle">Record details</h2></div><button class="icon-button" type="button" data-close-detail aria-label="Close details" data-i18n-aria-label="management.closeDetails">×</button></div>
+            <dl class="detail-list" data-detail-content></dl>
+          </dialog>
+
+          <section
+            class="page-view"
+            id="about-contact"
+            data-page-view
+            data-title-key="nav.aboutContact"
+            aria-labelledby="about-title"
+            hidden
+          >
+            <div class="page-heading">
+              <div>
+                <p class="eyebrow" data-i18n="about.eyebrow">
+                  ABOUT GUIDE MOTION
+                </p>
+                <h1 id="about-title" data-i18n="about.title">
+                  About & contact
+                </h1>
+                <p class="page-intro" data-i18n="about.body">
+                  The existing project includes an about section, team and
+                  testimonial content, and an email-based contact path. These
+                  will be reviewed before they are carried into the new UI.
+                </p>
+              </div>
+            </div>
+            <div class="notice-panel">
+              <span class="notice-icon" aria-hidden="true">i</span>
+              <div>
+                <strong data-i18n="about.reviewTitle">Content review</strong>
+                <p data-i18n="about.reviewBody">
+                  Contact details and claims about service availability will be
+                  confirmed before publication.
+                </p>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="workspace-footer">
+          <span data-i18n="footer.brandLine"
+            >Guide Motion · Rebuild workspace</span
+          ><span data-i18n="footer.statusLine"
+            >Local preview · No backend connected</span
+          >
+        </footer>
+      </div>
+    </div>
+    <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
+  </body>
+</html>
